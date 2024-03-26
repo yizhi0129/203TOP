@@ -1,0 +1,16 @@
+29 early_uninit "RPO blocks" "saxpy" 4
+29 early_uninit "RPO iterations == 10" "saxpy" 1
+29 early_uninit "RPO blocks visited" "saxpy" 4
+29 early_uninit "RPO num avail == 11" "saxpy" 1
+29 early_uninit "RPO num lattice == 23" "saxpy" 1
+29 early_uninit "RPO blocks executable" "saxpy" 4
+29 early_uninit "RPO block visited times == 1" "saxpy" 4
+29 early_uninit "RPO num values == 23" "saxpy" 1
+29 early_uninit "RPO blocks" "main" 10
+29 early_uninit "RPO num lattice == 43" "main" 1
+29 early_uninit "RPO iterations == 10" "main" 1
+29 early_uninit "RPO blocks visited" "main" 10
+29 early_uninit "RPO num avail == 18" "main" 1
+29 early_uninit "RPO num values == 43" "main" 1
+29 early_uninit "RPO blocks executable" "main" 10
+29 early_uninit "RPO block visited times == 1" "main" 10

@@ -24,9 +24,9 @@ static void print_info(void) {
     printf("REPETITIONS:   %'u\n", REPEAT);
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main( /*int argc, char* argv[argc + 1]*/) {
     print_info();
-    int useless = 42;
+    //int useless = 42;
     compute(VECTOR_SIZE, REPEAT);
     return 0;
 }

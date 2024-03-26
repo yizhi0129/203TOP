@@ -1,0 +1,118 @@
+
+;; Function __sputc (null)
+;; enabled by -tree-original
+
+
+{
+  if ( --_p->_w >= 0 || _p->_w >= _p->_lbfsize && (signed char) _c != 10)
+    {
+      return (int) (*_p->_p++  = (unsigned char) _c);
+    }
+  else
+    {
+      return __swbuf (_c, _p);
+    }
+}
+
+
+;; Function _OSSwapInt16 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint16_t) ((signed short) _data << 8 | (signed short) ((short unsigned int) _data >> 8));
+}
+
+
+;; Function _OSSwapInt32 (null)
+;; enabled by -tree-original
+
+
+{
+  __asm__("bswap   %0":"+r" _data:);
+  return _data;
+}
+
+
+;; Function _OSSwapInt64 (null)
+;; enabled by -tree-original
+
+
+{
+  __asm__("bswap   %0":"+r" _data:);
+  return _data;
+}
+
+
+;; Function saxpy (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+
+    int i;
+  i = 0;
+  goto <D.4392>;
+  <D.4391>:;
+  *(res + (sizetype) ((long unsigned int) i * 4)) = (int) *(x + (sizetype) ((long unsigned int) i * 4)) * a + (int) *(y + (sizetype) ((long unsigned int) i * 4));
+  i++ ;
+  <D.4392>:;
+  if (i < size) goto <D.4391>; else goto <D.4389>;
+  <D.4389>:;
+}
+
+
+;; Function main (null)
+;; enabled by -tree-original
+
+
+{
+  int size = 100;
+  int * res;
+  int * x;
+  int * y;
+  int a = 2;
+
+    int size = 100;
+    int * res;
+    int * x;
+    int * y;
+    int a = 2;
+  res = (int *) malloc ((long unsigned int) size * 4);
+  y = (int *) malloc ((long unsigned int) size * 4);
+  {
+    int i = 0;
+
+        int i = 0;
+    goto <D.4405>;
+    <D.4404>:;
+    x = (int *) malloc ((long unsigned int) size * 4);
+    *(x + (sizetype) ((long unsigned int) i * 4)) = i + 50;
+    *(y + (sizetype) ((long unsigned int) i * 4)) = i;
+     ++i;
+    <D.4405>:;
+    if (i < size) goto <D.4404>; else goto <D.4402>;
+    <D.4402>:;
+  }
+  saxpy (res, (const int *) x, (const int *) y, a, size);
+  {
+    int i = 0;
+
+        int i = 0;
+    goto <D.4409>;
+    <D.4408>:;
+    printf ((const char * restrict) "res[%d] = %d ; ", i, *(res + (sizetype) ((long unsigned int) i * 4)));
+    if ((i + 1) % 10 == 0)
+      {
+        printf ((const char * restrict) "\n");
+      }
+     ++i;
+    <D.4409>:;
+    if (i <= 99) goto <D.4408>; else goto <D.4406>;
+    <D.4406>:;
+  }
+  return 1;
+}
+return 0;
+

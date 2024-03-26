@@ -13,7 +13,7 @@ void saxpy(int* res, int const* x, int const* y, int a, int size) {
     }
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main( /*int argc, char* argv[argc + 1]*/) {
     int size = 100;
     int *res, *x, *y;
     int a = 2;

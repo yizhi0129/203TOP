@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -mmacosx-version-min=12.7 -dynamiclib -Wl,-headerpad_max_install_names -o libcompute.dylib -install_name @rpath/libcompute.dylib CMakeFiles/compute.dir/compute.c.o 
