@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.016)
+cmake_minimum_required(VERSION 3.16)
 set(CMAKE_COLOR_DIAGNOSTICS ON)
 
-project(main LANGUAGES C)
+project(TOP-LAB01-vector LANGUAGES C)
 
 add_library(vec SHARED vector.c)
 add_library(compute SHARED compute.c)

@@ -1,0 +1,14 @@
+Undefined symbols for architecture x86_64:
+  "_add_vectors", referenced from:
+      _compute in compute.c.o
+  "_allocate_vector", referenced from:
+      _compute in compute.c.o
+  "_free_vector", referenced from:
+      _compute in compute.c.o
+  "_init_vector", referenced from:
+      _compute in compute.c.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [libcompute.dylib] Error 1
+make[1]: *** [CMakeFiles/compute.dir/all] Error 2
+make: *** [all] Error 2

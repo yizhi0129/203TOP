@@ -20,9 +20,9 @@ int main( /*int argc, char* argv[argc + 1]*/) {
 
     res = malloc(sizeof(int) * size);
     y = malloc(sizeof(int) * size);
+    x = malloc(sizeof(int) * size);
 
-    for (int i = 0; i < size; ++i) {
-        x = malloc(sizeof(int) * size);
+    for (int i = 0; i < size; ++i) {    
         x[i] = 50 + i;
         y[i] = i;
     }
@@ -33,5 +33,9 @@ int main( /*int argc, char* argv[argc + 1]*/) {
         if ((i + 1) % 10 == 0) { printf("\n"); }
     }
 
-    return 1;
+    free(res);
+    free(x);
+    free(y);
+
+    return 0;
 }

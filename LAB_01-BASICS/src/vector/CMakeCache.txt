@@ -125,7 +125,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=main
+CMAKE_PROJECT_NAME:STATIC=TOP-LAB01-vector
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -191,6 +191,15 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Value Computed by CMake
+TOP-LAB01-vector_BINARY_DIR:STATIC=/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_01-BASICS/src/vector
+
+//Value Computed by CMake
+TOP-LAB01-vector_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+TOP-LAB01-vector_SOURCE_DIR:STATIC=/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_01-BASICS/src/vector
 
 //Value Computed by CMake
 main_BINARY_DIR:STATIC=/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_01-BASICS/src/vector
