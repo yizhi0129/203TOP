@@ -1,11 +1,16 @@
 #include <math.h>
-#include <omp.h>
+#include </usr/local/Cellar/libomp/17.0.6/include/omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 size_t N = 16384;
 size_t M = 16384;
+
+size_t BN;
+size_t BM;
+
+#define min(x, y) ((x) <= (y) ? (x) : (y)) //????
 
 void now(struct timespec* t) {
     clock_gettime(CLOCK_MONOTONIC_RAW, t);
@@ -26,7 +31,41 @@ void stencil(size_t n, size_t m, double const* in, double* out) {
     }
 }
 
-int main(int argc, char* argv[]) {
+void stencil_blocked(size_t n, size_t m, double const* in, double* out) {
+#pragma omp parallel for
+    for (size_t bi = 1; bi < n + 1; bi += BN) {
+        for (size_t bj = 1; bj < m + 1; bj += BM) {
+            size_t const biend = min(n + 1, bi + BN);
+            size_t const bjend = min(m + 1, bj + BM);
+            for (size_t i = bi; i < biend; ++ i) {
+                for (size_t j = bj; j < bjend; ++ j) {
+                    out[i * m + j] = in[(i - 1) * m + j] + in[i * m + (j - 1)] + in[i * m + j]
+                                       + in[i * m + (j + 1)] + in[(i + 1) * m + j];
+                    out[i * m + j] /= in[i * m + j];
+                }
+            }
+        }
+    }
+}
+
+void stencil_blocked_2(size_t n, size_t m, double const* in, double* out) {
+#pragma omp parallel for
+    for (size_t bi = 1; bi < n + 1; bi += BN) {
+        for (size_t bj = 1; bj < m + 1; bj += BM) {
+            size_t const biend = min(n + 1, bi + BN);
+            size_t const bjend = min(m + 1, bj + BM);
+            for (size_t i = bi; i < biend; ++ i) {
+                for (size_t j = bj; j < bjend; ++ j) {
+                    out[i * m + j] = in[(i - 1) * m + j] + in[i * m + (j - 1)] + in[i * m + j]
+                                       + in[i * m + (j + 1)] + in[(i + 1) * m + j];
+                    out[i * m + j] /= in[i * m + j];
+                }
+            }
+        }
+    }
+}
+
+int main(int argc, char** argv) {
     printf("%zux%zu\n", N, M);
 
     fprintf(stderr, "alloc...\r");
@@ -44,14 +83,32 @@ int main(int argc, char* argv[]) {
     struct timespec t0, t1;
     double elapsed;
 
-    fprintf(stderr, "warm normal...\r");
-    stencil(N, M, a, b);
-    fprintf(stderr, "bench normal...\r");
-    now(&t0);
-    stencil(N, M, a, b);
-    now(&t1);
-    elapsed = duration_ms(t0, t1);
-    printf("normal:  %.3lf ms\n", elapsed);
-
+    int ind = atoi(argv[1]);
+    BN = atoi(argv[2]);
+    BM = atoi(argv[2]);
+    
+    switch (ind)
+    {
+        case 1:
+            fprintf(stderr, "warm blocked...\r");
+            stencil_blocked(N, M, a, b);
+            fprintf(stderr, "bench blocked...\r");
+            now(&t0);
+            stencil_blocked(N, M, a, b);
+            now(&t1);
+            elapsed = duration_ms(t0, t1);
+            printf("blocked: %.3lf ms\n", elapsed);
+            break;
+        default:
+            fprintf(stderr, "warm normal...\r");
+            stencil(N, M, a, b);
+            fprintf(stderr, "bench normal...\r");
+            now(&t0);
+            stencil(N, M, a, b);
+            now(&t1);
+            elapsed = duration_ms(t0, t1);
+            printf("normal:  %.3lf ms\n", elapsed);
+            break;
+    } 
     return 0;
 }
