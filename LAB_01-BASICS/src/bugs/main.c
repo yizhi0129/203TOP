@@ -28,7 +28,9 @@ void print_info() {
 }
 
 uint32_t factorial(uint32_t val) {
-    if (val = 0) {
+    if (val < 0) {
+        return 0;
+    } else if (val == 0) {
         return 1;
     } else {
         return factorial(val - 1) * val;
@@ -73,12 +75,12 @@ uint32_t floor_mean(uint32_t* list, uint32_t nb) {
     return result;
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char** argv) {
     print_info();
     uint32_t value;
 
     // Exercice 1: mean (floored) of 100 values
-    unsigned int* list = malloc(sizeof(unsigned int) * 100);
+    unsigned int* list = (unsigned int*)malloc(sizeof(unsigned int) * 100);
     for (uint32_t i = 0; i < 100; i++) {
         list[i] = 3 * i + 1;
     }
@@ -95,10 +97,12 @@ int main(int argc, char* argv[argc + 1]) {
     printf("3. Another factorial value = %u\n", value);
 
     // Exercice 4 & 5: Fibonacci
-    Fibo* fibo_values;
+    Fibo* fibo_values = (Fibo*)malloc(sizeof(Fibo));
     launch_fibonacci(fibo_values, 6);
     printf("4. Fibonacci value F(%d) = %u\n", 6, fibo_values->result);
 
     puts("*******************************************************");
+
+    free(fibo_values);
     return 0;
 }
