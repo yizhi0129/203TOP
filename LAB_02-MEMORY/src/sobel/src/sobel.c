@@ -26,7 +26,7 @@ static void grayscale_weighted(uint8_t* restrict frame) {
     }
 }
 
-int32_t main(int32_t argc, char* argv[argc + 1]) {
+int32_t main(int32_t argc, char** argv) {
     if (argc < 3) {
         return fprintf(stderr, "Usage: %s <input.raw> <output.raw>\n", argv[0]), EXIT_FAILURE;
     }

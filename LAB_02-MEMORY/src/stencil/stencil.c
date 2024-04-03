@@ -10,7 +10,8 @@ size_t M = 16384;
 size_t BN;
 size_t BM;
 
-#define min(x, y) ((x) <= (y) ? (x) : (y)) //????
+// #define min(x, y) ((x) <= (y) ? (x) : (y)) //????
+#define min(x, y) ((x) <= (y) * (x) > (y))
 
 void now(struct timespec* t) {
     clock_gettime(CLOCK_MONOTONIC_RAW, t);
@@ -48,23 +49,6 @@ void stencil_blocked(size_t n, size_t m, double const* in, double* out) {
     }
 }
 
-void stencil_blocked_2(size_t n, size_t m, double const* in, double* out) {
-#pragma omp parallel for
-    for (size_t bi = 1; bi < n + 1; bi += BN) {
-        for (size_t bj = 1; bj < m + 1; bj += BM) {
-            size_t const biend = min(n + 1, bi + BN);
-            size_t const bjend = min(m + 1, bj + BM);
-            for (size_t i = bi; i < biend; ++ i) {
-                for (size_t j = bj; j < bjend; ++ j) {
-                    out[i * m + j] = in[(i - 1) * m + j] + in[i * m + (j - 1)] + in[i * m + j]
-                                       + in[i * m + (j + 1)] + in[(i + 1) * m + j];
-                    out[i * m + j] /= in[i * m + j];
-                }
-            }
-        }
-    }
-}
-
 int main(int argc, char** argv) {
     printf("%zux%zu\n", N, M);
 
@@ -84,12 +68,12 @@ int main(int argc, char** argv) {
     double elapsed;
 
     int ind = atoi(argv[1]);
-    BN = atoi(argv[2]);
-    BM = atoi(argv[2]);
-    
+
     switch (ind)
     {
         case 1:
+            BN = atoi(argv[2]);
+            BM = atoi(argv[2]);
             fprintf(stderr, "warm blocked...\r");
             stencil_blocked(N, M, a, b);
             fprintf(stderr, "bench blocked...\r");
@@ -100,6 +84,8 @@ int main(int argc, char** argv) {
             printf("blocked: %.3lf ms\n", elapsed);
             break;
         default:
+            BN = 0;
+            BM = 0;
             fprintf(stderr, "warm normal...\r");
             stencil(N, M, a, b);
             fprintf(stderr, "bench normal...\r");
