@@ -1,0 +1,3 @@
+/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_03-SHARED_MEMORY/exercises/mesh/CMakeFiles/mesh.dir
+/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_03-SHARED_MEMORY/exercises/mesh/CMakeFiles/edit_cache.dir
+/Users/yangyizhi/Documents/M1 CHPS/TOP-24/LAB_03-SHARED_MEMORY/exercises/mesh/CMakeFiles/rebuild_cache.dir
