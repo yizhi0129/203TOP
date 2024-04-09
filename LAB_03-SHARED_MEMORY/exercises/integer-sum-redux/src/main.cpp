@@ -16,12 +16,14 @@
 #define NEPOCHS 11
 
 namespace utils {
-template <typename T> requires std::is_integral_v<T>
+template <typename T> int requires std::is_integral_v<T>;
+#include <span>
+
 auto initialize(std::span<T> s) -> void {
     for (auto& e : s) {
         e = static_cast<T>(mrand48() % 100);
     }
-}
+};
 
 template <typename T> auto print(std::span<T> s) -> void {
     for (auto& e : s) {

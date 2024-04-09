@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_COLOR_DIAGNOSTICS ON)
 
 project(TOP-LAB_03-integer_sum_redux LANGUAGES CXX)
-add_compile_options(-Wall -Wextra -Wconversion)
+add_compile_options(-Wall -Wextra -Wconversion -O0)
+# add_compile_options(-Wall -Wextra -Wconversion -O3)
 
 set(CMAKE_CXX_STANDARD 20)
 
