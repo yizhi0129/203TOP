@@ -1,8 +1,10 @@
 16384x16384
-blocked: 0.845 ms
+blocked: 2.343 ms
 16384x16384
-blocked: 1.624 ms
+blocked: 1.609 ms
 16384x16384
-blocked: 0.914 ms
+blocked: 2.188 ms
 16384x16384
-blocked: 0.963 ms
+blocked: 7.850 ms
+16384x16384
+blocked: 1.694 ms

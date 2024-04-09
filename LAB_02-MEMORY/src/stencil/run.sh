@@ -13,3 +13,5 @@ do
     ./stencil 1 2048 >> stencil_opt_2048.txt
     ./stencil 1 4096 >> stencil_opt_4096.txt
 done
+
+rm -f stencil

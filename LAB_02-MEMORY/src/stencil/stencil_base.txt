@@ -1,10 +1,10 @@
 16384x16384
-normal:  2864.742 ms
+normal:  9327.527 ms
 16384x16384
-normal:  4910.373 ms
+normal:  7677.852 ms
 16384x16384
-normal:  2661.179 ms
+normal:  8053.315 ms
 16384x16384
-normal:  3329.760 ms
+normal:  5729.545 ms
 16384x16384
-normal:  3163.325 ms
+normal:  8348.978 ms
