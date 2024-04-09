@@ -13,7 +13,7 @@ BINDIR := build
 
 all: baseline baseline-gcc baseline-clang
 
-baselines: baseline baseline-gcc baseline-clang
+baselines: baseline baseline-gcc baseline-clang sobel
 
 baseline: $(SRCDIR)/sobel.c $(SRCDIR)/common.c $(SRCDIR)/baseline.c
 	@mkdir -p $(BINDIR)
@@ -27,5 +27,9 @@ baseline-clang: $(SRCDIR)/sobel.c $(SRCDIR)/common.c $(SRCDIR)/baseline.c
 	@mkdir -p $(BINDIR)
 	$(LCC) -DBASELINE $(LCC_CFLAGS) $(LCC_OFLAGS) $(DFLAGS) $^ -o $(BINDIR)/$@ -lm
 
+sobel: $(SRCDIR)/sobel.c $(SRCDIR)/common.c $(SRCDIR)/sobel.c
+	@mkdir -p $(BINDIR)
+	$(GCC) $(GCC_CFLAGS) $(OFLAGS) $(DFLAGS) $^ -o $(BINDIR)/$@ -lm
+	
 clean:
 	@rm -Rf $(BINDIR)
