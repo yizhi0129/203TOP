@@ -11,7 +11,7 @@ size_t BN;
 size_t BM;
 
 // #define min(x, y) ((x) <= (y) ? (x) : (y)) //????
-#define min(x, y) ((x) <= (y) * (x) > (y))
+#define min(x, y) ((x) <= (y) * (x) + (x) > (y) * (y))
 
 void now(struct timespec* t) {
     clock_gettime(CLOCK_MONOTONIC_RAW, t);
