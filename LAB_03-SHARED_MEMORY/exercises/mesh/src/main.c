@@ -39,6 +39,11 @@ typedef struct cell_soa_s
     bool* is_ghost;
  } cell_soa_t;
 
+// struct of arrays
+typedef struct cell_aos_s
+{
+    cell_t* cells;
+} cell_aos_t;
 
 cell_t cell_new(int32_t id, char name_abrev, uint16_t max_x, uint16_t max_y) {
     cell_type_t kind;
@@ -120,6 +125,9 @@ void mesh_init(mesh_t* mesh) {
     }
 }
 
+// ex. 3 if well vectorized ?
+// maqao cqa 
+// docker image ubuntu_maqao
 void mesh_compute_velocity(mesh_t* mesh) {
     for (size_t i = 0; i < mesh->nx; ++i) {
         mesh->cells[i].acceleration = 0;
@@ -133,6 +141,29 @@ void mesh_compute_velocity(mesh_t* mesh) {
     for (size_t c = 0; c < mesh->nx * mesh->ny; ++c) {
         mesh->cells[c].velocity += mesh->cells[c].acceleration;
     }
+}
+
+// loop splitting
+void mesh_compute_velocity_opt(mesh_t mesh[static 1], int nthreads) {
+    #pragma omp parallel num_threads(nthreads)
+    {
+    #pragma omp for
+    for (size_t i = 0; i < mesh->nx; ++i) {
+        mesh->cells[i].acceleration = 0.0;
+        for (size_t j = 0; j < i; ++j) {
+            mesh->cells[i].acceleration += 0.1337 * (mesh->cells[j].x - mesh->cells[i].x)
+                                               + (mesh->cells[j].y - mesh->cells[i].y);
+            }
+        for (size_t j = i + 1; j < mesh->ny; ++j) {
+            mesh->cells[i].acceleration += 0.1337 * (mesh->cells[j].x - mesh->cells[i].x)
+                                               + (mesh->cells[j].y - mesh->cells[i].y);
+            }                                       
+        }
+    #pragma omp for    
+    for (size_t c = 0; c < mesh->nx * mesh->ny; ++c) {
+        mesh->cells[c].velocity += mesh->cells[c].acceleration;
+    }
+}
 }
 
 double elapsed(struct timespec t0, struct timespec t1) {

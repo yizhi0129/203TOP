@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libseq.a CMakeFiles/seq.dir/src/sequential.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libseq.a
