@@ -5,7 +5,7 @@
 #ifndef TOP_COMPUTE_H
 #define TOP_COMPUTE_H
 
-#include "../types.h"
+#include "../../types.h"
 
 /**
  * \brief Allocate, compute $c = a + b$, print results and elapsed time.

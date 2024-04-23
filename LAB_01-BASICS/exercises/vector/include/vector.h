@@ -5,7 +5,7 @@
 #ifndef TOP_VECTOR_H
 #define TOP_VECTOR_H
 
-#include "../types.h"
+#include "../../types.h"
 
 /**
  * \brief Allocate a vector with the specified size.
