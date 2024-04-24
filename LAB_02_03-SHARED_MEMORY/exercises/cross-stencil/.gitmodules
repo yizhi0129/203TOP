@@ -1,4 +1,0 @@
-[submodule "ext/mdspan"]
-	path = ext/mdspan
-	url = https://github.com/kokkos/mdspan.git
-	branch = stable
