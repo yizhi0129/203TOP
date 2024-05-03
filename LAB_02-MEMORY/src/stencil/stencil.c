@@ -1,5 +1,5 @@
 #include <math.h>
-#include </usr/local/Cellar/libomp/17.0.6/include/omp.h>
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
